@@ -1,0 +1,7 @@
+• Bump app version to 2.9 (versionCode 12)
+• Expand time signature options to support 6/8 and other common signatures
+• Keep per-channel note timing when muting channels
+• Fix per-channel mute/volume handling in rewritten MIDI tracks
+• fix: prevent IllegalMonitorStateException in SheetMusic.draw() on orientation change
+• Enhance music notation support with triplets and staccato
+• Update README.md

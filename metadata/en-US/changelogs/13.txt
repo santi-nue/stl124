@@ -1,0 +1,9 @@
+• Update to new release for fixes
+• Apply remaining changes
+• Fix partial secondary beam mid-note x-position calculation
+• Fix staff row-wrap to respect pickup measure boundaries
+• Fix dotted-eighth double-beam artifact in 6/8 beaming
+• Fix beam beat-alignment to account for pickup measure offset
+• Beam dotted-eighth+16th+eighth pattern in compound meter
+• Render pickup/anacrusis measures correctly
+• Apply remaining changes
