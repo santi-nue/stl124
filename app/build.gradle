@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace = 'com.midisheetmusic'
+    namespace 'com.midisheetmusic'
     compileSdk 35
 
     defaultConfig {
@@ -29,6 +29,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.txt'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
@@ -50,5 +51,7 @@ dependencies {
     implementation 'androidx.preference:preference:1.2.1'
     implementation 'androidx.viewpager2:viewpager2:1.1.0'
     implementation 'androidx.fragment:fragment:1.8.4'
+    implementation 'androidx.activity:activity:1.9.3'
+
     implementation fileTree(dir: 'libs', include: ['*.aar'])
 }
