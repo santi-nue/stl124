@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- For reading MIDI files on Android 11–12 (API 30–32) -->
+    <!-- Android 6.0–12 (API 23–32): read shared-storage media files -->
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
-    <!-- For reading audio files on Android 13+ (API 33+) -->
+
+    <!-- Android 9 or lower: needed only if the app modifies shared-storage files -->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
+    <!-- Android 13+ (API 33+): read audio files from shared storage -->
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
-    <!-- USB MIDI device access -->
-    <uses-feature android:name="android.hardware.usb.host" android:required="false" />
+
+    <!-- Optional USB MIDI host support -->
+    <uses-feature
+        android:name="android.hardware.usb.host"
+        android:required="false" />
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -44,22 +53,18 @@
             android:configChanges="orientation|screenSize"
             android:exported="true"
             android:theme="@style/PlayerTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="audio/midi" />
-                <data android:mimeType="audio/x-midi" />
-            </intent-filter>
+
+            <!-- Handles MIDI files opened from file managers, downloads, etc. -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data android:mimeType="audio/midi" />
                 <data android:mimeType="audio/x-midi" />
-                <data android:mimeType="application/x-midi" />
                 <data android:mimeType="audio/mid" />
-
+                <data android:mimeType="application/x-midi" />
             </intent-filter>
+
         </activity>
 
         <provider
@@ -67,9 +72,11 @@
             android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
+
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/fileprovider_paths" />
+
         </provider>
 
     </application>
